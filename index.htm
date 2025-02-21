@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EI Arts | We'll Be Back Soon!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f9fa;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-size: 2.5em;
+      }
+      p {
+        font-size: 1.2em;
+      }
+      .countdown {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>We're Under Maintenance</h1>
+      <p>
+        Our website is currently undergoing scheduled maintenance. We'll be back
+        soon!
+      </p>
+      <p class="countdown" id="countdown"></p>
+    </div>
+
+    <script>
+      // Set countdown time (example: 1 hour from now)
+      const maintenanceEndTime = new Date().getTime() + 60 * 60 * 1000;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = maintenanceEndTime - now;
+
+        if (timeLeft > 0) {
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          document.getElementById(
+            "countdown"
+          ).innerText = `Estimated time left: ${minutes}m ${seconds}s`;
+          setTimeout(updateCountdown, 1000);
+        } else {
+          document.getElementById("countdown").innerText =
+            "We're back online! Refresh the page.";
+        }
+      }
+
+      updateCountdown();
+    </script>
+  </body>
+</html>
